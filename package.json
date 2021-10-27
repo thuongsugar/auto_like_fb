@@ -1,0 +1,22 @@
+{
+  "name": "auto_like",
+  "version": "1.0.0",
+  "description": "-   Install Node<br>",
+  "main": "autu_like.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thuongsugar/auto_like_fb.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/thuongsugar/auto_like_fb/issues"
+  },
+  "homepage": "https://github.com/thuongsugar/auto_like_fb#readme",
+  "dependencies": {
+    "dotenv": "^10.0.0"
+  }
+}
