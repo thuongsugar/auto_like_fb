@@ -1,4 +1,6 @@
 require("dotenv").config();
+const TOKEN = process.env.TOKEN;
+const LIMIT = process.env.LIMIT;
 const https = require("https");
 
 function getJsonData(api) {
@@ -31,7 +33,7 @@ async function getListID(apiListID) {
     return arrID;
 }
 async function startLike(idUser) {
-    const apiGetListId = `https://graph.facebook.com/${idUser}/feed?fields=id&limit=${process.env.LIMIT}&access_token=${process.env.TOKEN}`;
+    const apiGetListId = `https://graph.facebook.com/${idUser}/feed?fields=id&limit=${LIMIT}&access_token=${TOKEN}`;
     let listID = await getListID(apiGetListId);
     for (let index = 0; index < listID.length; index++) {
         await postLike(listID[index]);
@@ -40,7 +42,7 @@ async function startLike(idUser) {
 }
 function postLike(idPost) {
     const HOST_NAME = "graph.facebook.com";
-    let API_LIKE = `/${idPost}/likes?access_token=${process.env.TOKEN}`;
+    let API_LIKE = `/${idPost}/likes?access_token=${TOKEN}`;
     const options = {
         hostname: HOST_NAME,
         port: 443,
