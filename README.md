@@ -1,4 +1,4 @@
-# Auto Like Facebook
+# Auto Like And Auto DisLike Facebook
 
 ## Requirements
 
@@ -13,4 +13,7 @@
 ## Development
 
 **`npm i `**</br>
-**`node auto-like.js`**
+_// startLike(process.env.USER_ID);</br>
+startDisLike(process.env.USER_ID);_
+
+**`node autu-like.js`**

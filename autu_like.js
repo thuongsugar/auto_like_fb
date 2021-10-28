@@ -70,4 +70,45 @@ function postLike(idPost) {
         req.end();
     });
 }
-startLike(process.env.USER_ID);
+async function startDisLike(idUser) {
+    const apiGetListId = `https://graph.facebook.com/${idUser}/feed?fields=id&limit=${LIMIT}&access_token=${TOKEN}`;
+    let listID = await getListID(apiGetListId);
+    for (let index = 0; index < listID.length; index++) {
+        await delLike(listID[index]);
+    }
+    console.log("Success");
+}
+
+function delLike(idPost) {
+    const HOST_NAME = "graph.facebook.com";
+    let API_LIKE = `/${idPost}/likes?access_token=${TOKEN}`;
+    const options = {
+        hostname: HOST_NAME,
+        port: 443,
+        path: API_LIKE,
+        method: "DELETE",
+        headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+        },
+    };
+    return new Promise((t, f) => {
+        const req = https.request(options, (res) => {
+            console.log(`status code ${res.statusCode}`);
+            res.on("data", (d) => {
+                console.log(JSON.parse(d));
+            });
+            res.on("end", () => {
+                console.log("done " + idPost);
+                t();
+            });
+        });
+        req.on("error", (err) => {
+            console.log(err);
+            f();
+        });
+        req.end();
+    });
+}
+
+// startLike(process.env.USER_ID);
+startDisLike(process.env.USER_ID);
